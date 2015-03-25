@@ -2,7 +2,7 @@
 /**
 * @version   $Id: layout.php 2381 2012-08-15 04:14:26Z btowles $
  * @author    RocketTheme http://www.rockettheme.com
- * @copyright Copyright (C) 2007 - 2015 RocketTheme, LLC
+ * @copyright Copyright (C) 2007 - 2014 RocketTheme, LLC
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
 *
 * Gantry uses the Joomla Framework (http://www.joomla.org), a GNU/GPLv2 content management system
@@ -16,7 +16,7 @@ class GantryDropdownLayout extends AbstractRokMenuLayout
 {
     protected $theme_path;
     protected $params;
-	static $jsLoaded = false;
+    static $jsLoaded = false;
 
     private $activeid;
 
@@ -24,7 +24,7 @@ class GantryDropdownLayout extends AbstractRokMenuLayout
     {
         parent::__construct($args);
 
-		global $gantry;
+        global $gantry;
 
         $theme_rel_path = "/html/mod_roknavmenu/themes/gantry-dropdown";
         $this->theme_path = $gantry->templatePath . $theme_rel_path;
@@ -36,10 +36,10 @@ class GantryDropdownLayout extends AbstractRokMenuLayout
 
     public function stageHeader()
     {
-		global $gantry;
+        global $gantry;
 
         JHtml::_('behavior.framework', true);
-		if (!self::$jsLoaded && $gantry->get('layout-mode', 'responsive') == 'responsive'){
+        if (!self::$jsLoaded && $gantry->get('layout-mode', 'responsive') == 'responsive'){
             if (!($gantry->browser->name == 'ie' && $gantry->browser->shortver < 9)){
                 $gantry->addScript($gantry->baseUrl . 'modules/mod_roknavmenu/themes/default/js/rokmediaqueries.js');
                 if ($this->args['responsive-menu'] == 'selectbox') {
@@ -49,10 +49,10 @@ class GantryDropdownLayout extends AbstractRokMenuLayout
                     $gantry->addScript($gantry->baseUrl . 'modules/mod_roknavmenu/themes/default/js/sidemenu.js');
                 }
             }
-			self::$jsLoaded = true;
+            self::$jsLoaded = true;
         }
-		$gantry->addLess('menu.less', 'menu.css', 1, array('headerstyle'=>$gantry->get('headerstyle','dark'), 'menuHoverColor'=>$gantry->get('linkcolor')));
-
+        $gantry->addLess('menu.less', 'menu.css', 1, array('headerstyle'=>$gantry->get('headerstyle','dark'), 'menuHoverColor'=>$gantry->get('linkcolor')));
+        $gantry->addScript($gantry->baseUrl . 'templates/gantry/js/script.js');
         // no media queries for IE8 so we compile and load the hovers
         if ($gantry->browser->name == 'ie' && $gantry->browser->shortver < 9){
             $gantry->addLess('menu-hovers.less', 'menu-hovers.css', 1, array('headerstyle'=>$gantry->get('headerstyle','dark'), 'menuHoverColor'=>$gantry->get('linkcolor')));
@@ -62,7 +62,7 @@ class GantryDropdownLayout extends AbstractRokMenuLayout
     protected function renderItem(JoomlaRokMenuNode &$item, RokMenuNodeTree &$menu)
     {
 
-		global $gantry;
+        global $gantry;
 
         $wrapper_css = '';
         $ul_css = '';
@@ -70,10 +70,10 @@ class GantryDropdownLayout extends AbstractRokMenuLayout
 
         $item_params = $item->getParams();
 
-	    //get columns count for children
-	    $columns = $item_params->get('dropdown_columns',1);
-	    //get custom image
-	    $custom_image = $item_params->get('dropdown_customimage');
+        //get columns count for children
+        $columns = $item_params->get('dropdown_columns',1);
+        //get custom image
+        $custom_image = $item_params->get('dropdown_customimage');
         //get the custom icon
         $custom_icon = $item_params->get('dropdown_customicon');
         //get the custom class
@@ -82,8 +82,8 @@ class GantryDropdownLayout extends AbstractRokMenuLayout
         //add default link class
         $item->addLinkClass('item');
 
-	    if ($custom_image && $custom_image != -1) $item->addLinkClass('image');
-	    if ($custom_icon && $custom_icon != -1) $item->addLinkClass('icon');
+        if ($custom_image && $custom_image != -1) $item->addLinkClass('image');
+        if ($custom_icon && $custom_icon != -1) $item->addLinkClass('icon');
         if ($custom_class != '') $item->addListItemClass($custom_class);
 
         $dropdown_width = intval(trim($item_params->get('dropdown_dropdown_width')));
@@ -113,10 +113,10 @@ class GantryDropdownLayout extends AbstractRokMenuLayout
             }
         }
 
-	    $grouping = $item_params->get('dropdown_children_group');
+        $grouping = $item_params->get('dropdown_children_group');
         if ($grouping == 1) $item->addListItemClass('grouped');
 
-	    $child_type = $item_params->get('dropdown_children_type');
+        $child_type = $item_params->get('dropdown_children_type');
         $child_type = $child_type == '' ? 'menuitems' : $child_type;
         $distribution = $item_params->get('dropdown_distribution');
         $manual_distribution = explode(",",$item_params->get('dropdown_manual_distribution'));
@@ -142,16 +142,16 @@ class GantryDropdownLayout extends AbstractRokMenuLayout
             $group_css = ' type-module';
         }
 
-	    //not so elegant solution to add subtext
-	    $item_subtext = $item_params->get('dropdown_item_subtext','');
-	    if ($item_subtext=='') $item_subtext = false;
-	    else $item->addLinkClass('subtext');
+        //not so elegant solution to add subtext
+        $item_subtext = $item_params->get('dropdown_item_subtext','');
+        if ($item_subtext=='') $item_subtext = false;
+        else $item->addLinkClass('subtext');
 
        //sort out module children:
        if ($child_type!="menuitems") {
-            $document	= JFactory::getDocument();
-            $renderer	= $document->loadRenderer('module');
-            $params		= array('style'=>'dropdown');
+            $document   = JFactory::getDocument();
+            $renderer   = $document->loadRenderer('module');
+            $params     = array('style'=>'dropdown');
 
             $mod_contents = array();
             foreach ($modules as $mod)  {
@@ -203,7 +203,7 @@ class GantryDropdownLayout extends AbstractRokMenuLayout
                         $items_per_col = intval(ceil($count / $columns));
                         $children_cols = array_chunk($item->getChildren(),$items_per_col);
                     } elseif ($distribution=='manual') {
-                    	$children_cols = $this->array_fill($item->getChildren(), $columns, $manual_distribution);
+                        $children_cols = $this->array_fill($item->getChildren(), $columns, $manual_distribution);
                     } else {
                         $children_cols = $this->array_chunkd($item->getChildren(),$columns);
                     }
@@ -264,8 +264,8 @@ class GantryDropdownLayout extends AbstractRokMenuLayout
     function getModule ($id=0, $name='')
     {
 
-        $modules	=& RokNavMenu::loadModules();
-        $total		= count($modules);
+        $modules    =& RokNavMenu::loadModules();
+        $total      = count($modules);
         for ($i = 0; $i < $total; $i++)
         {
             // Match the name of the module
@@ -285,23 +285,23 @@ class GantryDropdownLayout extends AbstractRokMenuLayout
 
     function array_fill(array $array, $columns, $manual_distro) {
 
-    	$new_array = array();
+        $new_array = array();
 
-    	array_unshift($array, null);
+        array_unshift($array, null);
 
-    	for ($i=0;$i<$columns;$i++) {
-    		if (isset($manual_distro[$i])) {
-    			$manual_count = $manual_distro[$i];
-    			for ($c=0;$c<$manual_count;$c++) {
-    				//echo "i:c " . $i . ":". $c;
-    				$element = next($array);
-    				if ($element) $new_array[$i][$c] = $element;
-    			}
-    		}
+        for ($i=0;$i<$columns;$i++) {
+            if (isset($manual_distro[$i])) {
+                $manual_count = $manual_distro[$i];
+                for ($c=0;$c<$manual_count;$c++) {
+                    //echo "i:c " . $i . ":". $c;
+                    $element = next($array);
+                    if ($element) $new_array[$i][$c] = $element;
+                }
+            }
 
-    	}
+        }
 
-    	return $new_array;
+        return $new_array;
 
     }
 
@@ -346,29 +346,41 @@ class GantryDropdownLayout extends AbstractRokMenuLayout
     }
 
     public function curPageURL($link) {
-		$pageURL = 'http';
-	 	if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
-	 	$pageURL .= "://";
-	 	if ($_SERVER["SERVER_PORT"] != "80") {
-	  		$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
-	 	} else {
-	  		$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-	 	}
+        $pageURL = 'http';
+        if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+        $pageURL .= "://";
+        if ($_SERVER["SERVER_PORT"] != "80") {
+            $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+        } else {
+            $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+        }
 
-		$replace = str_replace('&', '&amp;', (preg_match("/^http/", $link) ? $pageURL : $_SERVER["REQUEST_URI"]));
+        $replace = str_replace('&', '&amp;', (preg_match("/^http/", $link) ? $pageURL : $_SERVER["REQUEST_URI"]));
 
-		return $replace == $link || $replace == $link . 'index.php';
-	}
+        return $replace == $link || $replace == $link . 'index.php';
+    }
 
     public function renderMenu(&$menu) {
         ob_start();
 ?>
-<div class="gf-menu-device-container responsive-type-<?php echo $this->args['responsive-menu'];?>"></div>
-<ul class="gf-menu l1 " <?php if (array_key_exists('tag_id',$this->args)): ?>id="<?php echo $this->args['tag_id'];?>"<?php endif;?>>
-    <?php foreach ($menu->getChildren() as $item) : ?>
-        <?php $this->renderItem($item, $menu); ?>
-    <?php endforeach; ?>
-</ul>
+<div id="menu-cross">
+    <div id="toggle">
+      <div class="one"></div>
+      <div class="two"></div>
+      <div class="three"></div>
+<!--       <img class="burger" src="images/svg/ICONS_MenuBtn.svg" alt="" />
+      <img class="cross" src="images/svg/ICONS_CloseBtn.svg" alt="" /> -->
+    </div>
+    <div class="clear"></div>
+    <div class="gf-menu-device-container responsive-type-<?php echo $this->args['responsive-menu'];?>"></div>
+    <div class="menu-wrap">
+        <ul class="gf-menu l1 " <?php if (array_key_exists('tag_id',$this->args)): ?>id="<?php echo $this->args['tag_id'];?>"<?php endif;?>>
+            <?php foreach ($menu->getChildren() as $item) : ?>
+                <?php $this->renderItem($item, $menu); ?>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>
 <?php
         return ob_get_clean();
     }
