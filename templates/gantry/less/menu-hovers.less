@@ -24,12 +24,12 @@
 	// Default items
 	li {
 		&:hover, &.active:hover {
-			border: 1px solid @menuBorder;
+			//border: 1px solid @menuBorder;
 			background: @menuDropBack;
 			padding-top: 1px;
-			.border-radius(@menuItemRadius);
+			//.border-radius(@menuItemRadius);
 			border-top: 0;
-			.box-shadow(@menuInsetShadow);
+			//.box-shadow(@menuInsetShadow);
 
 			> .dropdown {
 				left: -1px;
@@ -40,14 +40,14 @@
 
 		&:hover > .item {
 			color: @menuTextHover !important;
-			text-shadow: 1px 1px 0 @menuTextShadow;
+			// text-shadow: 1px 1px 0 @menuTextShadow;
 		}
 	}
 
 	// Parent items
 	li.parent {
 		&:hover {
-			.border-radius(@menuItemRadius @menuItemRadius 0 0);
+			//.border-radius(@menuItemRadius @menuItemRadius 0 0);
 		}
 	}
 
@@ -62,11 +62,11 @@
 					padding-top: 1px;
 
 					> .item {
-						.border-radius(@menuItemRadius);
-						border: 1px solid @menuBorder;
+						//.border-radius(@menuItemRadius);
+						//border: 1px solid @menuBorder;
 						background: @menuDropBack;
 						border-top: 0;
-						.box-shadow(@menuFullShadow);
+						//.box-shadow(@menuFullShadow);
 
 						// Right border fixer
 						.border-fixer {
@@ -75,7 +75,7 @@
 							height: 100%;
 							width: 2px;
 							right:-1px;
-							.box-shadow(@menuInsetShadow);
+							//.box-shadow(@menuInsetShadow);
 							top: 0px;
 							background: @menuDropBack;
 							z-index:1001;

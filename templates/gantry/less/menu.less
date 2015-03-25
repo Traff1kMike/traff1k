@@ -34,7 +34,7 @@
 
 		padding: 4px 8px;
 		text-align: left;
-		text-shadow: 1px 1px 0 @menuTextShadow;
+		//text-shadow: 1px 1px 0 @menuTextShadow;
 		text-decoration: none;
 		display: block;
 		outline: 0;
@@ -82,10 +82,10 @@
 	// Level 1 Style Overrides
 	&.l1 {
 		> li.active {
-			background: @menuActiveBack;
-			border: 1px solid @menuActiveBorder;
-			.border-radius(@menuItemRadius);
-			.box-shadow(@menuActiveShadow);
+			//background: @menuActiveBack;
+			//border: 1px solid @menuActiveBorder;
+			//.border-radius(@menuItemRadius);
+			//.box-shadow(@menuActiveShadow);
 		}
 
 		> li > .item {
@@ -148,12 +148,12 @@
 		opacity: 0;
 		left: -999em;
 		text-align: left;
-		border: 1px solid @menuBorder;
+		// border: 1px solid @menuBorder;
 		border-top: 0;
 		background: @menuDropBack;
-		.transition(opacity 0.2s ease-out);
-		.border-radius(0 5px 5px 5px);
-		.box-shadow(@menuFullShadow);
+		// .transition(opacity 0.2s ease-out);
+		// .border-radius(0 5px 5px 5px);
+		// .box-shadow(@menuFullShadow);
 		z-index: 1000;
 
 		.flyout {
@@ -438,7 +438,7 @@
 
 				&:hover > .item {
 					color: @menuTextHover !important;
-					text-shadow: 1px 1px 0 @menuTextShadow;
+					//text-shadow: 1px 1px 0 @menuTextShadow;
 				}
 
 				.item {
