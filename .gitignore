@@ -10,9 +10,11 @@
 /cache
 /logs
 /tmp
+/images
 /configuration.php
 /.htaccess
 /web.config
+
 
 # Test Related Files #
 /phpunit.xml
